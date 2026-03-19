@@ -44,16 +44,25 @@ public class Main {
             int indexSpy = (int) (Math.random() * (countPlayer + 1));
 
             for (int numberCurrentPlayer = 0; numberCurrentPlayer < countPlayer; numberCurrentPlayer++) {
-                System.out.println("Нажмите \"Enter\":");
+                System.out.println("Нажмите \"Enter\", чтобы открыть карточку:");
                 String inputEnter = new Scanner(System.in).nextLine();
+                for (int i = 0; i < 50; i++) {
+                    System.out.println();
+                }
                 if (numberCurrentPlayer == indexSpy) {
                     System.out.println("Ты шпион, люби Фион");
                     System.out.println("Нажмите \"Enter\", чтобы закрыть карточку:");
                     inputEnter = new Scanner(System.in).nextLine();
+                    for (int i = 0; i < 50; i++) {
+                        System.out.println();
+                    }
                 } else {
                     System.out.println(randomWord);
                     System.out.println("Нажмите \"Enter\", чтобы закрыть карточку:");
                     inputEnter = new Scanner(System.in).nextLine();
+                    for (int i = 0; i < 50; i++) {
+                        System.out.println();
+                    }
                 }
             }
         } catch (Exception ex) {
