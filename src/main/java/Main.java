@@ -5,6 +5,7 @@ import org.jsoup.nodes.Element;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     static List<String> listWords = new ArrayList<>();
@@ -33,6 +34,26 @@ public class Main {
             for (String word : listWords) {
                 if (word.length() >= 2) {
                     listCorrectWords.add(word);
+                }
+            }
+
+            System.out.println("Введите кол-во игроков:");
+            int countPlayer = new Scanner(System.in).nextInt();
+            String randomWord = listCorrectWords.get((int) (Math.random() * (listCorrectWords.size())));
+            int indexSpy = (int) (Math.random() * (countPlayer + 1));
+
+            String inputEnter = new Scanner(System.in).nextLine();
+            for (int numberCurrentPlayer = 0; numberCurrentPlayer < countPlayer; numberCurrentPlayer++) {
+                System.out.println("Нажмите \"Enter\":");
+                inputEnter = new Scanner(System.in).nextLine();
+                if (numberCurrentPlayer == indexSpy) {
+                    System.out.println("Ты шпион, люби Фион");
+                    System.out.println("Нажмите \"Enter\", чтобы закрыть карточку:");
+                    inputEnter = new Scanner(System.in).nextLine();
+                } else {
+                    System.out.println(randomWord);
+                    System.out.println("Нажмите \"Enter\", чтобы закрыть карточку:");
+                    inputEnter = new Scanner(System.in).nextLine();
                 }
             }
         } catch (Exception ex) {
