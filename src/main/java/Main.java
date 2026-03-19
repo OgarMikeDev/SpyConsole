@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Main {
     static List<String> listWords = new ArrayList<>();
+    static List<String> listCorrectWords = new ArrayList<>();
 
     public static void main(String[] args) {
         try {
@@ -17,17 +18,23 @@ public class Main {
             fileWriter.close();
 
             String textAllWords = document.selectFirst(".form-control").text();
-            StringBuilder builderWords = new StringBuilder();
+            String currentWord = "";
             for (int i = 0; i < textAllWords.length(); i++) {
-                if (String.valueOf(textAllWords.charAt(i)).equals(String.valueOf(textAllWords.charAt(i)).toUpperCase())) {
-                    builderWords.append("\n" + textAllWords.charAt(i));
+                if (String.valueOf(textAllWords.charAt(i)).equals(String.valueOf(textAllWords.charAt(i)).toUpperCase()) &&
+                        !String.valueOf(textAllWords.charAt(i)).equals(" ")) {
+                    listWords.add(currentWord);
+                    currentWord = "";
+                    currentWord += textAllWords.charAt(i);
                 } else {
-                    String currentLetter = String.valueOf(textAllWords.charAt(i));
-                    System.out.println("pis " + currentLetter + " pis");
-                    builderWords.append(currentLetter);
+                    currentWord += textAllWords.charAt(i);
                 }
             }
-            System.out.println(builderWords);
+
+            for (String word : listWords) {
+                if (word.length() >= 2) {
+                    listCorrectWords.add(word);
+                }
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
